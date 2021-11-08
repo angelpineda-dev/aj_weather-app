@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Navbar from "../components/ui/Navbar";
 import SearchScreen from "../Screens/SearchScreen";

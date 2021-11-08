@@ -1,15 +1,18 @@
+import React from "react";
 import Card from "./Card";
 
+const cities = [
+  {
+    id: 1,
+    name: "Mexico",
+  },
+];
+
 const CardContainer = () => {
-  const favoriteCities = [
-    { id: 1, name: "Mexico" },
-    { id: 2, name: "Canada" },
-    { id: 3, name: "New Zeland" },
-  ];
   return (
     <div>
-      <h2>Favorites</h2>
-      {favoriteCities.map((city) => (
+      <h2>Cities</h2>
+      {cities.map((city) => (
         <Card key={city.id} title={city.name} />
       ))}
     </div>
