@@ -3,7 +3,6 @@ import { types } from "../types/types";
 const initialState = {
   loading: false,
   showDetailsSearch: false,
-  toggleCityFavorites: [],
 };
 
 export const uiReducer = (state = initialState, action) => {

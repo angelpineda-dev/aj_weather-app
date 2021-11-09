@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchCity } from "../../actions/localStorage";
 
 import CardSearchDetails from "./CardSearchDetails";
 
 const CardSearch = ({ city }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const dispatch = useDispatch();
 
   const { id, name, weather, wind, main, coord, clouds, sys } = city;
 
   const handleFavorite = () => {
-    console.log(id);
+    dispatch(fetchCity(id));
   };
 
   const handleDetails = () => {
