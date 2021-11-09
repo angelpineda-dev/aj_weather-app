@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Navbar from "../components/ui/Navbar";
-import SearchScreen from "../Screens/SearchScreen";
+import FavoritesScreen from "../Screens/FavoritesScreen";
 import HomeScreen from "../Screens/HomeScreen";
 import NotFoundScreen from "../Screens/NotFoundScreen";
 
@@ -11,7 +11,7 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/search" element={<SearchScreen />} />
+        <Route path="/favorites" element={<FavoritesScreen />} />
         <Route path="*" element={<NotFoundScreen />} />
       </Routes>
     </HashRouter>
