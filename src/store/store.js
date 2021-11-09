@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { searchReducer } from "../reducers/searchReducer";
+import { uiReducer } from "../reducers/uiReducer";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
@@ -9,6 +10,7 @@ const composeEnhancers =
 
 const reducers = combineReducers({
   search: searchReducer,
+  ui: uiReducer,
 });
 
 export const store = createStore(

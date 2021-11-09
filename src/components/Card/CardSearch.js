@@ -13,7 +13,6 @@ const CardSearch = ({ city }) => {
 
   const handleDetails = () => {
     setShowDetails(!showDetails);
-    console.log("Details", showDetails);
   };
 
   return (

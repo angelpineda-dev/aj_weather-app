@@ -1,5 +1,6 @@
 import { helpHttp } from "../helpers/helpHttp";
 import { types } from "../types/types";
+import { endLoading, startLoading } from "./ui";
 
 export const search = (city, error) => ({
   type: types.resultSearch,
@@ -9,22 +10,16 @@ export const search = (city, error) => ({
   },
 });
 
-export const startSearch = () => ({
-  type: types.startSearch,
-});
-
-export const endSearch = () => ({
-  type: types.endSearch,
-});
-
 export const searchCity = (name) => {
   return (dispatch) => {
-    dispatch(startSearch());
+    dispatch(startLoading());
 
     const res = helpHttp().current(name);
 
     res.then(({ data, err }) => {
       dispatch(search(data, err));
+
+      dispatch(endLoading());
     });
   };
 };
