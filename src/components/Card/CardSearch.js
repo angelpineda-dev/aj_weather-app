@@ -25,30 +25,31 @@ const CardSearch = ({ city }) => {
   };
 
   return (
-    <section>
-      <header>
+    <section className="card">
+      <header className="card__header">
         <h2>{name}</h2>
-        <h3>{sys.country}</h3>
-        <button onClick={handleFavorite}>Favorite</button>
+        <p>{sys.country}</p>
+        <button onClick={handleFavorite} className="btn btn-favorite">
+          <i className="far fa-star"></i>
+        </button>
       </header>
       <hr />
-      <main>
-        <section>
+      <main className="card__main">
+        <section className="card__main-top">
           <h3>{weather[0].main}</h3>
           <p>{weather[0].description}</p>
           <img
+            className="card__weather-icon"
             src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
             alt="weather icon"
           />
         </section>
-        <article>{main.temp}*C</article>
-        <section>
-          <div className="small-desc">
-            <p>Sunrise: {sunriseTime}</p>
-            <p>Sunset: {sunsetTime}</p>
-          </div>
+        <article className="card__main-temp">{main.temp}°C</article>
+        <section className="card__main-bot">
+          <p>Sunrise: {sunriseTime}</p>
+          <p>Sunset: {sunsetTime}</p>
         </section>
-        <button onClick={handleDetails}>More </button>
+        <button onClick={handleDetails}>Details</button>
       </main>
       <hr />
 

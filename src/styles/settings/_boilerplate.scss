@@ -1,0 +1,30 @@
+$primary: #085dc1;
+$secondary: #ff0099;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background: linear-gradient(220deg, $primary, $secondary);
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 2rem auto;
+}
+
+h2,
+h3,
+p {
+  padding: 0.5rem;
+}

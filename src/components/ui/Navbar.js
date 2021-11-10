@@ -3,15 +3,19 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
+    <div className="navbar">
       <h1>Weather App</h1>
       <nav>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" className="navlink">
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/favorites">Favorites</NavLink>
+            <NavLink to="/favorites" className="navlink">
+              Favorites
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,0 +1,23 @@
+.navbar {
+  text-align: center;
+
+  h1 {
+    color: white;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 1rem auto;
+
+    a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+}
+
+.active-link {
+  color: white;
+}

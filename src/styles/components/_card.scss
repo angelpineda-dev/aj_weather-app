@@ -1,0 +1,141 @@
+.card {
+  border: thin solid #ffffff94;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.884);
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  overflow: hidden;
+  padding: 1rem;
+  position: relative;
+  width: 90%;
+
+  & > * {
+    z-index: 10;
+  }
+
+  &::before {
+    content: "";
+    background: linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 255, 255, 0.3)
+    );
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  hr {
+    width: 90%;
+    margin: 0.5rem auto;
+  }
+
+  #{&}__header {
+    position: relative;
+  }
+
+  #{&}__main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    h3 {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 0.5rem auto 0;
+      padding: 0.5rem;
+      width: 80%;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #222;
+      }
+    }
+  }
+
+  #{&}__main-top {
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  #{&}__main-top img {
+    position: absolute;
+    top: -10%;
+    right: 0%;
+    width: 33%;
+    animation: dance-icon 8s linear infinite;
+  }
+
+  #{&}__main-temp {
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  #{&}__main-bot {
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: space-between;
+  }
+
+  #{&}__details {
+    section {
+      h3 {
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+      ul {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      li {
+        padding: 0.25rem;
+      }
+    }
+  }
+}
+
+@keyframes dance-icon {
+  0%,
+  100% {
+    transform: translateX(-10%) translateY(2%);
+  }
+
+  50% {
+    transform: translateX(10%) translateY(-2%);
+  }
+}
+
+.btn {
+  background-color: transparent;
+  margin: white;
+  border: none;
+}
+
+.btn-favorite {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 10px #222);
+  }
+}
