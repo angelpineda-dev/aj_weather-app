@@ -9,13 +9,21 @@ const toggleCity = (cities) => ({
   },
 });
 
-if (!myStorage.getItem("cities")) {
-  const initialStorage = [];
+export const checkStorage = () => {
+  return (dispatch) => {
+    if (!myStorage.getItem("cities")) {
+      const initialStorage = [];
 
-  myStorage.setItem("cities", JSON.stringify(initialStorage));
+      myStorage.setItem("cities", JSON.stringify(initialStorage));
 
-  toggleCity(initialStorage);
-}
+      dispatch(toggleCity(initialStorage));
+    } else {
+      const initialState = myStorage.getItem("cities");
+
+      dispatch(toggleCity(JSON.parse(initialState)));
+    }
+  };
+};
 
 // TODO: load cities in redux when app starts
 

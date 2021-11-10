@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { checkStorage } from "../actions/localStorage";
 import { searchCity } from "../actions/search";
 import CardSearch from "../components/Card/CardSearch";
 import { useForm } from "../hooks/useForm";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkStorage());
+  }, [dispatch]);
 
   const { city } = useSelector((state) => state.search);
 

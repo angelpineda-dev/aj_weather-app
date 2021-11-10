@@ -5,10 +5,16 @@ import { fetchCity } from "../../actions/localStorage";
 import CardSearchDetails from "./CardSearchDetails";
 
 const CardSearch = ({ city }) => {
-  const [showDetails, setShowDetails] = useState(false);
   const dispatch = useDispatch();
 
+  const [showDetails, setShowDetails] = useState(false);
+
   const { id, name, weather, wind, main, coord, clouds, sys } = city;
+
+  const sunrise = new Date(sys.sunrise * 1000);
+  const sunriseTime = sunrise.toLocaleTimeString();
+  const sunset = new Date(sys.sunset * 1000);
+  const sunsetTime = sunset.toLocaleTimeString();
 
   const handleFavorite = () => {
     dispatch(fetchCity(id));
@@ -28,15 +34,18 @@ const CardSearch = ({ city }) => {
       <hr />
       <main>
         <section>
-          <h3>{weather.main}</h3>
-          <p>{weather.description}</p>
-          <div>icon</div>
+          <h3>{weather[0].main}</h3>
+          <p>{weather[0].description}</p>
+          <img
+            src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+            alt="weather icon"
+          />
         </section>
         <article>{main.temp}*C</article>
         <section>
           <div className="small-desc">
-            <p>Sunrise: {sys.sunrise} a.m.</p>
-            <p>Sunset: {sys.sunset} p.m.</p>
+            <p>Sunrise: {sunriseTime}</p>
+            <p>Sunset: {sunsetTime}</p>
           </div>
         </section>
         <button onClick={handleDetails}>More </button>
