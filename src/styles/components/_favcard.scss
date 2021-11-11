@@ -1,0 +1,45 @@
+.favcard {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 0.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 95%;
+
+  #{&}__header {
+    grid-column: 1/2;
+  }
+
+  #{&}__resumen {
+    grid-column: 2/4;
+    position: relative;
+
+    p:nth-child(1) {
+      background-color: red;
+      font-size: calc(2rem + 1vw);
+      padding-top: 1rem;
+    }
+
+    p:nth-child(2) {
+      background-color: blue;
+      font-size: calc(0.5rem + 1vw);
+      text-align: center;
+    }
+  }
+
+  #{&}__weather-icon {
+    position: absolute;
+    top: -20%;
+    right: 0;
+  }
+
+  section {
+    grid-column: 1/4;
+  }
+}

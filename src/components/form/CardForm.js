@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import { searchCity } from "../../actions/search";
 import { useForm } from "../../hooks/useForm";
 
@@ -11,6 +12,14 @@ const CardForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (name.length < 3) {
+      return Swal.fire({
+        icon: "error",
+        title: "You need a city name",
+        text: "You need more than 2 letters to search a city.",
+      });
+    }
 
     dispatch(searchCity(name));
     reset();

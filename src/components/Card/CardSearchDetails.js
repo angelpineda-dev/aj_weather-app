@@ -8,7 +8,7 @@ const CardSearchDetails = ({ main, clouds, wind, coord, showDetails }) => {
       } `}
     >
       <section>
-        <h3>Weather</h3>
+        <h3>Temperature</h3>
 
         <div className="flex-row">
           <p>Feels like: {main.feels_like}°C</p>

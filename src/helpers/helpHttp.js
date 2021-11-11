@@ -1,4 +1,7 @@
-const WEATHER_KEY = "ddb12dfe0c97dfe3a4fc0222612c0e9c";
+import Swal from "sweetalert2";
+
+//const WEATHER_KEY = "ddb12dfe0c97dfe3a4fc0222612c0e9c";
+const WEATHER_KEY = "a4091adafda6b36daf58b1d0213f12b8";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
 
 export const helpHttp = () => {
@@ -21,7 +24,11 @@ export const helpHttp = () => {
 
       return { data, err };
     } catch (error) {
-      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "No city found",
+        text: "Please try with a valid city name",
+      });
 
       data = null;
       err = error;
@@ -36,7 +43,14 @@ export const helpHttp = () => {
     return customFetch(URL);
   };
 
+  const citiesById = (id) => {
+    const URL = `${BASE_URL}weather?id=${id}&appid=${WEATHER_KEY}&units=metric`;
+
+    return customFetch(URL);
+  };
+
   return {
     current,
+    citiesById,
   };
 };
