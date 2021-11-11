@@ -63,7 +63,9 @@ const CardSearch = ({ city }) => {
             {sunsetTime}
           </p>
         </section>
-        <button onClick={handleDetails}>Details</button>
+        <button onClick={handleDetails} className="btn btn-details">
+          Details
+        </button>
       </main>
       <hr />
 

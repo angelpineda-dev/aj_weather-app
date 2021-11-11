@@ -1,45 +1,62 @@
 .favcard {
+  align-items: center;
   background: linear-gradient(
     140deg,
     rgba(255, 255, 255, 0.75),
     rgba(255, 255, 255, 0.3)
   );
   border-radius: 0.25rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
+  position: relative;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 1rem auto;
   width: 95%;
 
-  #{&}__header {
-    grid-column: 1/2;
+  section {
+    margin-top: 0.5rem;
   }
 
-  #{&}__resumen {
-    grid-column: 2/4;
+  h3 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  #{&}__header {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
     position: relative;
 
-    p:nth-child(1) {
-      background-color: red;
+    & > p {
       font-size: calc(2rem + 1vw);
-      padding-top: 1rem;
-    }
-
-    p:nth-child(2) {
-      background-color: blue;
-      font-size: calc(0.5rem + 1vw);
-      text-align: center;
     }
   }
 
-  #{&}__weather-icon {
-    position: absolute;
-    top: -20%;
-    right: 0;
+  #{&}__weather-desc {
+    text-align: center;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
   }
 
-  section {
-    grid-column: 1/4;
+  #{&}__weather-main {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #{&}__details {
+    transition: height 0.3s ease-in;
+    overflow: hidden;
+  }
+
+  .btn-favorite {
+    position: relative;
+    top: 2.5%;
+    right: 2.5%;
+    z-index: 10;
   }
 }

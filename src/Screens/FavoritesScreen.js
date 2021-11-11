@@ -15,12 +15,12 @@ const FavoriteScreen = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Favorite Cities</h1>
+    <>
+      <h2 style={{ color: "white", textAlign: "center" }}>Favorite Cities</h2>
       {storage.map((id) => (
         <FavoriteCity id={id} key={id} />
       ))}
-    </div>
+    </>
   );
 };
 
