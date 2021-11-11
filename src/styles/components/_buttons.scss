@@ -1,0 +1,18 @@
+.btn {
+  background-color: transparent;
+  margin: white;
+  border: none;
+}
+
+.btn-favorite {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 10px #222);
+  }
+}

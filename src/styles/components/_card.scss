@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   margin: 2rem auto;
+  max-width: 600px;
   overflow: hidden;
   padding: 1rem;
   position: relative;
@@ -31,7 +32,11 @@
 
   hr {
     width: 90%;
-    margin: 0.5rem auto;
+    margin: 0.25rem auto;
+  }
+
+  p {
+    text-align: center;
   }
 
   #{&}__header {
@@ -87,15 +92,22 @@
 
   #{&}__main-bot {
     display: flex;
-    font-size: 0.8rem;
+    font-size: calc(0.5rem + 1vw);
     justify-content: space-between;
   }
 
   #{&}__details {
+    transition: height 0.3s ease-in;
+
+    p {
+      font-size: calc(0.75rem + 1vw);
+    }
+
     section {
       h3 {
-        text-align: center;
         font-size: 1.5rem;
+        text-align: center;
+        margin-top: 1rem;
       }
 
       ul {
@@ -121,21 +133,10 @@
   }
 }
 
-.btn {
-  background-color: transparent;
-  margin: white;
-  border: none;
+.hide-details {
+  height: 0;
 }
 
-.btn-favorite {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: filter 0.3s ease;
-
-  &:hover {
-    filter: drop-shadow(0 0 10px #222);
-  }
+.show-details {
+  height: 60vh;
 }

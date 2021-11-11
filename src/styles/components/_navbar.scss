@@ -1,15 +1,24 @@
 .navbar {
-  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
 
   h1 {
     color: white;
+    text-align: center;
   }
 
   ul {
     display: flex;
-    justify-content: space-around;
     list-style: none;
     margin: 1rem auto;
+
+    li {
+      padding-left: 1rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
     a {
       text-decoration: none;

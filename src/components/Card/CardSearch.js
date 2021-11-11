@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchCity } from "../../actions/localStorage";
+import CardFavoriteIcon from "./CardFavoriteIcon";
+import CardNoFavoriteIcon from "./CardNoFavoriteIcon";
 
 import CardSearchDetails from "./CardSearchDetails";
 
 const CardSearch = ({ city }) => {
   const dispatch = useDispatch();
+  const storage = useSelector((state) => state.storage);
 
   const [showDetails, setShowDetails] = useState(false);
 
@@ -15,6 +19,8 @@ const CardSearch = ({ city }) => {
   const sunriseTime = sunrise.toLocaleTimeString();
   const sunset = new Date(sys.sunset * 1000);
   const sunsetTime = sunset.toLocaleTimeString();
+
+  const isFavorite = storage.find((cityId) => cityId === id);
 
   const handleFavorite = () => {
     dispatch(fetchCity(id));
@@ -28,10 +34,12 @@ const CardSearch = ({ city }) => {
     <section className="card">
       <header className="card__header">
         <h2>{name}</h2>
-        <p>{sys.country}</p>
-        <button onClick={handleFavorite} className="btn btn-favorite">
-          <i className="far fa-star"></i>
-        </button>
+        <p>Country: {sys.country}</p>
+        {!isFavorite ? (
+          <CardFavoriteIcon handleFavorite={handleFavorite} />
+        ) : (
+          <CardNoFavoriteIcon handleFavorite={handleFavorite} />
+        )}
       </header>
       <hr />
       <main className="card__main">
@@ -46,8 +54,14 @@ const CardSearch = ({ city }) => {
         </section>
         <article className="card__main-temp">{main.temp}°C</article>
         <section className="card__main-bot">
-          <p>Sunrise: {sunriseTime}</p>
-          <p>Sunset: {sunsetTime}</p>
+          <p>
+            Sunrise: <wbr /> {sunriseTime}
+          </p>
+          <p>Humidity: {main.humidity}%</p>
+          <p>
+            Sunset: <wbr />
+            {sunsetTime}
+          </p>
         </section>
         <button onClick={handleDetails}>Details</button>
       </main>
@@ -58,6 +72,7 @@ const CardSearch = ({ city }) => {
         main={main}
         coord={coord}
         clouds={clouds}
+        showDetails={showDetails}
       />
     </section>
   );

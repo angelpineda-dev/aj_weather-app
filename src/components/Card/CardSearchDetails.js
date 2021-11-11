@@ -1,31 +1,37 @@
 import React from "react";
 
-const CardSearchDetails = ({ main, clouds, wind, coord }) => {
+const CardSearchDetails = ({ main, clouds, wind, coord, showDetails }) => {
   return (
-    <article className="card__details">
+    <article
+      className={`card__details ${
+        !showDetails ? "hide-details" : "show-details"
+      } `}
+    >
       <section>
         <h3>Weather</h3>
-        <ul>
-          <li>Feels like: {main.feels_like}°C</li>
-          <li>Minimun: {main.temp_min}°C</li>
-          <li>Maximun: {main.temp_max}°C</li>
-          <li>Humidity: {main.humidity}%</li>
-        </ul>
+
+        <div className="flex-row">
+          <p>Feels like: {main.feels_like}°C</p>
+          <p>Minimun: {main.temp_min}°C</p>
+          <p>Maximun: {main.temp_max}°C</p>
+        </div>
       </section>
       <section>
         <h3>Wind</h3>
-        <ul>
-          <li>Wind: {wind.speed} km/h</li>
-          <li>Wind direction: {wind.deg}°deg</li>
-          <li>clouds: {clouds.all}%</li>
-        </ul>
+
+        <div className="flex-row">
+          <p>Wind: {wind.speed} km/h</p>
+          <p>Wind direction: {wind.deg}°deg</p>
+          <p>clouds: {clouds.all}%</p>
+        </div>
       </section>
       <section>
         <h3>Location</h3>
-        <ul>
-          <li>Longitud: {coord.lon}</li>
-          <li>Latitud: {coord.lat}</li>
-        </ul>
+
+        <div className="flex-row">
+          <p>Longitud: {coord.lon} °</p>
+          <p>Latitud: {coord.lat} °</p>
+        </div>
       </section>
     </article>
   );
