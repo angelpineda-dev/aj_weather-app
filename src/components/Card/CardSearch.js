@@ -63,7 +63,7 @@ const CardSearch = ({ city }) => {
           <p>{weather[0].description}</p>
           <img
             className="card__weather-icon"
-            src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
             alt="weather icon"
           />
         </section>
