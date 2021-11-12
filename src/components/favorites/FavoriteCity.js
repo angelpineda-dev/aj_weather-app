@@ -104,25 +104,36 @@ const FavoriteCity = ({ id }) => {
         </section>
 
         <section className="favcard__weather-main">
-          <p>Max {main.temp_max} °C</p>
-          <p>Min {main.temp_min} °C</p>
-          <p>Feels like {main.feels_like} °C</p>
+          <h4>Temperature</h4>
+          <div>
+            <p>Max {main.temp_max} °C</p>
+            <p>Min {main.temp_min} °C</p>
+            <p>Feels like {main.feels_like} °C</p>
+          </div>
         </section>
 
         <section className="favcard__weather-main">
-          <p>Sunrise {sunriseTime}</p>
-          <p>Sunset {sunsetTime}</p>
+          <h4>Sun time</h4>
+          <div>
+            <p>Sunrise {sunriseTime}</p>
+            <p>Sunset {sunsetTime}</p>
+          </div>
         </section>
         <section className="favcard__weather-main">
-          <p>
-            Coords: Latitude {coord.lat}°, longitude {coord.lon}°
-          </p>
+          <h4>Coords</h4>
+          <div>
+            <p>Latitude {coord.lat}°</p>
+            <p>longitude {coord.lon}°</p>
+          </div>
         </section>
         <section className="favcard__weather-main">
-          {main.sea_level && <p>Sea level: {main.sea_level} hPa</p>}
-          {main.grnd_level && <p>Ground level: {main.grnd_level} hPa</p>}
-          {main.humidity && <p>Humidity: {main.humidity}%</p>}
-          {main.presure && <p>Presure {main.presure} hPa</p>}
+          <h4>Advanced details</h4>
+          <div>
+            {main.sea_level && <p>Sea level: {main.sea_level} hPa</p>}
+            {main.grnd_level && <p>Ground level: {main.grnd_level} hPa</p>}
+            {main.humidity && <p>Humidity: {main.humidity}%</p>}
+            {main.presure && <p>Presure {main.presure} hPa</p>}
+          </div>
         </section>
       </div>
     </article>
