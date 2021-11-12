@@ -49,6 +49,9 @@
   }
 
   #{&}__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     transition: height 0.3s ease-in;
     overflow: hidden;
   }

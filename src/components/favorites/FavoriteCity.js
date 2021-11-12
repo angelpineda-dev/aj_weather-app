@@ -19,14 +19,14 @@ const FavoriteCity = ({ id }) => {
       .then((res) => setData(res.data));
   }, [id]);
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) return null;
 
   const isFavorite = storage.find((cityId) => cityId === id);
 
   const handleFavorite = () => {
     Swal.fire({
       title: "Are you sure?",
-      text: `You will delete ${name}`,
+      text: `You will delete "${name}"`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -34,7 +34,7 @@ const FavoriteCity = ({ id }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        //Swal.fire("Deleted!", "Your file has been deleted.", "success");
         dispatch(fetchCity(id));
       }
     });
