@@ -8,6 +8,8 @@ Here you can see a preview of the mobile design.
 
 ![Mobile view ](public/assets/weather_app_mobile.png)
 
+If you want to give it a try to the app, you can visit it here [Weather app](https://angelpineda-dev.github.io/aj_weather-app/)
+
 ## Technologies
 
 The next is the technologies that were use to build this app.
