@@ -2,7 +2,6 @@ import { types } from "../types/types";
 
 const initialState = {
   loading: false,
-  showDetailsSearch: false,
 };
 
 export const uiReducer = (state = initialState, action) => {

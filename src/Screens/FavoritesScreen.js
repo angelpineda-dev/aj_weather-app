@@ -6,8 +6,6 @@ import FavoriteCity from "../components/favorites/FavoriteCity";
 const FavoriteScreen = () => {
   const storage = useSelector((state) => state.storage);
 
-  // TODO: Crea un arreglo con los 2 id's y renderiza un componente que tenga un helpHttp y PUM!, divide el problema cuando no puedas con el.
-
   const dispatch = useDispatch();
 
   useEffect(() => {

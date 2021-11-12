@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import gsap from "gsap/all";
+import React, { useEffect, useRef, useState } from "react";
+/* Redux */
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchCity } from "../../actions/localStorage";
+/* Components */
 import CardFavoriteIcon from "./CardFavoriteIcon";
 import CardNoFavoriteIcon from "./CardNoFavoriteIcon";
-
 import CardSearchDetails from "./CardSearchDetails";
 
 const CardSearch = ({ city }) => {
-  const dispatch = useDispatch();
-  const storage = useSelector((state) => state.storage);
-
   const [showDetails, setShowDetails] = useState(false);
+  const storage = useSelector((state) => state.storage);
+  const dispatch = useDispatch();
+  const refCard = useRef();
+
+  useEffect(() => {
+    if (city) {
+      gsap.from(refCard.current, {
+        y: -50,
+        duration: 0.75,
+        ease: "power1",
+        opacity: 0,
+      });
+    }
+  }, [city]);
 
   const { id, name, weather, wind, main, coord, clouds, sys } = city;
 
+  /* date configuration */
   const sunrise = new Date(sys.sunrise * 1000);
   const sunriseTime = sunrise.toLocaleTimeString();
   const sunset = new Date(sys.sunset * 1000);
@@ -22,6 +36,7 @@ const CardSearch = ({ city }) => {
 
   const isFavorite = storage.find((cityId) => cityId === id);
 
+  /* events */
   const handleFavorite = () => {
     dispatch(fetchCity(id));
   };
@@ -31,7 +46,7 @@ const CardSearch = ({ city }) => {
   };
 
   return (
-    <section className="card">
+    <section className="card" ref={refCard}>
       <header className="card__header">
         <h2>{name}</h2>
         <p>Country: {sys.country}</p>

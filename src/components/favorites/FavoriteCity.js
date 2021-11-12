@@ -1,23 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+/* redux */
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
 import { fetchCity } from "../../actions/localStorage";
+/* helpers */
 import { helpHttp } from "../../helpers/helpHttp";
+/* components */
 import CardFavoriteIcon from "../Card/CardFavoriteIcon";
 import CardNoFavoriteIcon from "../Card/CardNoFavoriteIcon";
+/* external libraries */
+import gsap from "gsap/all";
+import Swal from "sweetalert2";
 
 const FavoriteCity = ({ id }) => {
   const [data, setData] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const storage = useSelector((state) => state.storage);
   const dispatch = useDispatch();
+  const refFavCard = useRef();
 
   useEffect(() => {
     helpHttp()
       .citiesById(id)
       .then((res) => setData(res.data));
   }, [id]);
+
+  useEffect(() => {
+    if (data) {
+      gsap.from(refFavCard.current, {
+        y: 50,
+        duration: 1,
+        ease: "power1",
+        opacity: 0,
+      });
+    }
+  }, [data]);
 
   if (!data) return null;
 
@@ -52,7 +69,7 @@ const FavoriteCity = ({ id }) => {
   const sunsetTime = sunset.toLocaleTimeString();
 
   return (
-    <article className="favcard">
+    <article className="favcard" ref={refFavCard}>
       <section className="favcard__header">
         <div>
           <h3>{name}</h3>
