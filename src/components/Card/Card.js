@@ -1,15 +1,20 @@
-import gsap from "gsap/all";
 import React, { useEffect, useRef, useState } from "react";
+/* libraries */
+import gsap from "gsap/all";
 /* Redux */
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchCity } from "../../actions/localStorage";
 /* Components */
 import CardFavoriteIcon from "./CardFavoriteIcon";
 import CardNoFavoriteIcon from "./CardNoFavoriteIcon";
-import CardSearchDetails from "./CardSearchDetails";
+import CardSmallDesc from "./CardSmallDesc";
+import CardTemp from "./CardTemp";
+import CardSun from "./CardSun";
+import CardLocations from "./CardLocations";
+import CardAdvancedDetails from "./CardAdvancedDetails";
+import CardWind from "./CardWind";
 
-const CardSearch = ({ city }) => {
+const Card = ({ city }) => {
   const [showDetails, setShowDetails] = useState(false);
   const storage = useSelector((state) => state.storage);
   const dispatch = useDispatch();
@@ -28,12 +33,6 @@ const CardSearch = ({ city }) => {
 
   const { id, name, weather, wind, main, coord, clouds, sys } = city;
 
-  /* date configuration */
-  const sunrise = new Date(sys.sunrise * 1000);
-  const sunriseTime = sunrise.toLocaleTimeString();
-  const sunset = new Date(sys.sunset * 1000);
-  const sunsetTime = sunset.toLocaleTimeString();
-
   const isFavorite = storage.find((cityId) => cityId === id);
 
   /* events */
@@ -46,7 +45,7 @@ const CardSearch = ({ city }) => {
   };
 
   return (
-    <section className="card" ref={refCard}>
+    <section className="card">
       <header className="card__header">
         <h2>{name}</h2>
         <p>Country: {sys.country}</p>
@@ -57,42 +56,28 @@ const CardSearch = ({ city }) => {
         )}
       </header>
       <hr />
-      <main className="card__main">
-        <section className="card__main-top">
-          <h3>{weather[0].main}</h3>
-          <p>{weather[0].description}</p>
-          <img
-            className="card__weather-icon"
-            src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
-            alt="weather icon"
-          />
-        </section>
+      <main>
+        <CardSmallDesc weather={weather} />
         <article className="card__main-temp">{main.temp}°C</article>
-        <section className="card__main-bot">
-          <p>
-            Sunrise: <wbr /> {sunriseTime}
-          </p>
-          <p>Humidity: {main.humidity}%</p>
-          <p>
-            Sunset: <wbr />
-            {sunsetTime}
-          </p>
-        </section>
-        <button onClick={handleDetails} className="btn btn-details">
+        <button onClick={handleDetails} className="btn btn-details ">
           Details
         </button>
+        <hr />
       </main>
-      <hr />
 
-      <CardSearchDetails
-        wind={wind}
-        main={main}
-        coord={coord}
-        clouds={clouds}
-        showDetails={showDetails}
-      />
+      <div
+        className={`card__details ${
+          !showDetails ? "hide-details" : "show-details"
+        }`}
+      >
+        <CardTemp main={main} />
+        <CardSun sys={sys} />
+        <CardLocations coord={coord} />
+        <CardWind wind={wind} clouds={clouds} />
+        <CardAdvancedDetails main={main} />
+      </div>
     </section>
   );
 };
 
-export default CardSearch;
+export default Card;

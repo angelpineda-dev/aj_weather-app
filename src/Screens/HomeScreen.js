@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkStorage } from "../actions/localStorage";
-import CardSearch from "../components/Card/CardSearch";
+import Card from "../components/Card/Card";
 import CardForm from "../components/form/CardForm";
 import Loader from "../components/ui/Loader";
 
@@ -19,7 +19,7 @@ const HomeScreen = () => {
     <div>
       <CardForm />
       {loading && <Loader />}
-      {city && !loading && <CardSearch city={city} />}
+      {city && !loading && <Card city={city} />}
     </div>
   );
 };

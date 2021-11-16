@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 /* redux */
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -11,6 +11,11 @@ import CardNoFavoriteIcon from "../Card/CardNoFavoriteIcon";
 /* external libraries */
 import gsap from "gsap/all";
 import Swal from "sweetalert2";
+import CardTemp from "../Card/CardTemp";
+import CardSun from "../Card/CardSun";
+import CardLocations from "../Card/CardLocations";
+import CardAdvancedDetails from "../Card/CardAdvancedDetails";
+import CardSmallDesc from "../Card/CardSmallDesc";
 
 const FavoriteCity = ({ id }) => {
   const [data, setData] = useState(null);
@@ -51,7 +56,7 @@ const FavoriteCity = ({ id }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        //Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
         dispatch(fetchCity(id));
       }
     });
@@ -63,19 +68,15 @@ const FavoriteCity = ({ id }) => {
 
   const { name, weather, main, sys, coord } = data;
 
-  const sunrise = new Date(sys.sunrise * 1000);
-  const sunriseTime = sunrise.toLocaleTimeString();
-  const sunset = new Date(sys.sunset * 1000);
-  const sunsetTime = sunset.toLocaleTimeString();
-
   return (
-    <article className="favcard" ref={refFavCard}>
-      <section className="favcard__header">
+    <article className="card" ref={refFavCard}>
+      <section className="card__header">
         <div>
-          <h3>{name}</h3>
+          <h2>{name}</h2>
           <p>{sys.country}</p>
         </div>
-        <p>{main.temp}°C</p>
+        <p className="card__main-temp">{main.temp}°C</p>
+
         {!isFavorite ? (
           <CardFavoriteIcon handleFavorite={handleFavorite} />
         ) : (
@@ -86,58 +87,21 @@ const FavoriteCity = ({ id }) => {
       <button onClick={handleDetails} className="btn-details">
         Details
       </button>
+      <hr />
 
       <div
-        className={`favcard__details ${
+        className={`card__details ${
           !showDetails ? "hide-details" : "show-details"
-        } `}
+        }`}
       >
-        <section className="favcard__weather-desc">
-          <hr />
-          <h3>{weather[0].main}</h3>
-          <p>{weather[0].description}</p>
-          <img
-            className="favcard__weather-icon"
-            src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
-            alt="weather icon"
-          />
-        </section>
-
-        <section className="favcard__weather-main">
-          <h4>Temperature</h4>
-          <div>
-            <p>Max {main.temp_max} °C</p>
-            <p>Min {main.temp_min} °C</p>
-            <p>Feels like {main.feels_like} °C</p>
-          </div>
-        </section>
-
-        <section className="favcard__weather-main">
-          <h4>Sun time</h4>
-          <div>
-            <p>Sunrise {sunriseTime}</p>
-            <p>Sunset {sunsetTime}</p>
-          </div>
-        </section>
-        <section className="favcard__weather-main">
-          <h4>Coords</h4>
-          <div>
-            <p>Latitude {coord.lat}°</p>
-            <p>longitude {coord.lon}°</p>
-          </div>
-        </section>
-        <section className="favcard__weather-main">
-          <h4>Advanced details</h4>
-          <div>
-            {main.sea_level && <p>Sea level: {main.sea_level} hPa</p>}
-            {main.grnd_level && <p>Ground level: {main.grnd_level} hPa</p>}
-            {main.humidity && <p>Humidity: {main.humidity}%</p>}
-            {main.presure && <p>Presure {main.presure} hPa</p>}
-          </div>
-        </section>
+        <CardSmallDesc weather={weather} />
+        <CardTemp main={main} />
+        <CardSun sys={sys} />
+        <CardLocations coord={coord} />
+        <CardAdvancedDetails main={main} />
       </div>
     </article>
   );
 };
 
-export default FavoriteCity;
+export default memo(FavoriteCity);

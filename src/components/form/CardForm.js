@@ -13,11 +13,11 @@ const CardForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name.length < 3) {
+    if (name.trim().length < 3) {
       return Swal.fire({
         icon: "error",
         title: "You need a city name",
-        text: "You need more than 2 letters to search a city.",
+        text: "You need at least 3 letters to search a city.",
       });
     }
 
