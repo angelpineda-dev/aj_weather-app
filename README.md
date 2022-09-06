@@ -27,7 +27,7 @@ By the way, this app was build with __node v16.13.0__ and __npm 8.1.0__. If you 
 
 We all keep learning new things day by day. If you have questions o some comment that would help me, plese let me know.
 
-- [Web site](https://www.angelpineda.com.mx/)
+- [Web site](https://angelpineda-dev.github.io/Home/)
 - [Github](https://github.com/angelpineda-dev)
 - [Twitter](https://twitter.com/angelpineda_dev)
 - [LinkedIn](https://www.linkedin.com/in/angelpineda-dev/)
